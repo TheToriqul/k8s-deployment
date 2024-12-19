@@ -1,0 +1,23 @@
+# Deployment manifest for nginx web server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  # Number of pod replicas to maintain
+  replicas: 3
+  # Pod selector for this deployment
+  selector:
+    matchLabels:
+      app: nginx
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
